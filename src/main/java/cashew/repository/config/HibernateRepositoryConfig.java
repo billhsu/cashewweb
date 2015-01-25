@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 /**
- * Created by shipxu on 25/1/15.
+ * Created by Shipeng Xu on 25/1/15.
  */
 @Configuration
 @EnableTransactionManagement
