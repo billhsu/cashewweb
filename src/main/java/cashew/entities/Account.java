@@ -7,6 +7,7 @@ import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
@@ -17,7 +18,7 @@ import java.util.*;
 @Table(name="accounts")
 public class Account implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "username", unique = true)
@@ -34,8 +35,7 @@ public class Account implements Serializable {
     private String email;
     
     @Column(name = "date_joined")
-    @Temporal(TemporalType.TIME)
-    @NotEmpty
+    @NotNull
     private Date dateJoined;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
@@ -97,5 +97,17 @@ public class Account implements Serializable {
 
     public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", dateJoined=" + dateJoined +
+                ", sketches=" + sketches +
+                '}';
     }
 }
