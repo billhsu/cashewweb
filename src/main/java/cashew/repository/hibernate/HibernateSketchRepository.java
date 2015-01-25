@@ -1,7 +1,7 @@
-package cashew.repository.hibernate4;
+package cashew.repository.hibernate;
 
-import cashew.entities.Account;
-import cashew.repository.AccountRepository;
+import cashew.entities.Sketch;
+import cashew.repository.SketchRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.dao.DataAccessException;
@@ -12,17 +12,17 @@ import javax.inject.Inject;
  * Created by shipxu on 25/1/15.
  */
 @Repository
-public class HibernateAccountRepository implements AccountRepository {
+public class HibernateSketchRepository implements SketchRepository{
     private SessionFactory sessionFactory;
     @Inject
-    public HibernateAccountRepository(SessionFactory sessionFactory) {
+    public HibernateSketchRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     private Session currentSession() {
         return sessionFactory.getCurrentSession();
     }
-    public void save(Account account) throws DataAccessException {
+    public void save(Sketch sketch) throws DataAccessException {
         
     }
 }

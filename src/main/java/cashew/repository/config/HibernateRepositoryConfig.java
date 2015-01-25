@@ -33,7 +33,7 @@ public class HibernateRepositoryConfig implements TransactionManagementConfigure
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder edb = new EmbeddedDatabaseBuilder();
         edb.setType(EmbeddedDatabaseType.H2);
-        edb.addScript("cashew/repository/hibernate4/schema.sql");
+        edb.addScript("cashew/repository/hibernate/schema.sql");
         EmbeddedDatabase embeddedDatabase = edb.build();
         return embeddedDatabase;
     }
