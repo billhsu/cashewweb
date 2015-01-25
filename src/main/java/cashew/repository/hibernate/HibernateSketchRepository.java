@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.inject.Inject;
 
 /**
- * Created by shipxu on 25/1/15.
+ * Created by Shipeng Xu on 25/1/15.
  */
 @Repository
 public class HibernateSketchRepository implements SketchRepository{
