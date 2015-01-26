@@ -1,7 +1,6 @@
 package cashew.entities;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,12 +26,11 @@ public class Sketch implements Serializable {
     @NotEmpty
     String filename;
 
-    @Column(name = "desc")
-    String desc;
+    @Column(name = "description")
+    String description;
 
     @Column(name = "date_uploaded")
-    @Temporal(TemporalType.TIME)
-    @NotEmpty
+    @NotNull
     Date dateUploaded;
 
     public Long getId() { return this.id; }
@@ -41,13 +39,24 @@ public class Sketch implements Serializable {
     public String getFilename() { return this.filename; }
     public void setFilename(String filename) { this.filename = filename; }
 
-    public String getDesc() { return this.desc; }
-    public void setDesc(String desc) { this.desc = desc; }
+    public String getDescription() { return this.description; }
+    public void setDescription(String description) { this.description = description; }
     
-    protected void setOwner(Account owner) {
+    public void setOwner(Account owner) {
         this.owner = owner;
     }
 
-    public Date getDataUploaded() { return this.dateUploaded; }
+    public Date getDateUploaded() { return this.dateUploaded; }
     public void setDateUploaded(Date date) { this.dateUploaded = date; }
+
+    @Override
+    public String toString() {
+        return "Sketch{" +
+                "id=" + id +
+                ", owner=" + owner +
+                ", filename='" + filename + '\'' +
+                ", description='" + description + '\'' +
+                ", dateUploaded=" + dateUploaded +
+                '}';
+    }
 }
