@@ -27,24 +27,6 @@ public class GeneralController {
     
     @RequestMapping("/")
     public String index() {
-        Account account = accountService.createAccount();
-        Random randomGenerator = new Random();
-        account.setEmail("aa@aa" + randomGenerator.nextLong()+".com");
-        account.setUsername("bill" + randomGenerator.nextLong());
-        account.setPassword("passwd");
-        account.setDateJoined(new Date());
-        accountService.saveAccount(account);
-        Collection<Account> accounts = accountService.findAccounts();
-        System.out.println(accounts.toString());
-        
-        Sketch sketch = sketchService.createSketch();
-        sketch.setDescription("test");
-        sketch.setFilename("test");
-        sketch.setOwner(account);
-        sketch.setDateUploaded(new Date());
-        sketchService.saveSketch(sketch);
-        Collection<Sketch> sketches = sketchService.findSketches();
-        System.out.println(sketches.toString());
         return "welcome";
     }
 }
