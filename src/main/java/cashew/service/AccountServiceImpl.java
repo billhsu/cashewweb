@@ -31,4 +31,9 @@ public class AccountServiceImpl implements AccountService {
     public Collection<Account> findAccounts() throws DataAccessException {
         return accountRepository.findAll();
     }
+
+    @Transactional(readOnly = true)
+    public Account findAccountByEmail(String email) {
+        return accountRepository.findByEmail(email);
+    }
 }
