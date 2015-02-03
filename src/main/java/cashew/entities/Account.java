@@ -29,6 +29,10 @@ public class Account implements Serializable {
     @NotEmpty
     private String password;
 
+    @Column(name = "salt")
+    @NotEmpty
+    private String salt;
+
     @Column(name = "email", unique = true)
     @NotEmpty
     @Email
@@ -91,6 +95,14 @@ public class Account implements Serializable {
         this.password = password;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     public Date getDateJoined() {
         return dateJoined;
     }
@@ -104,10 +116,8 @@ public class Account implements Serializable {
         return "Account{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", dateJoined=" + dateJoined +
-                ", sketches=" + sketches +
                 '}';
     }
 }

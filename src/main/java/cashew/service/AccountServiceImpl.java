@@ -4,9 +4,14 @@ import cashew.entities.Account;
 import cashew.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.bind.DatatypeConverter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.util.Collection;
 
 /**
@@ -24,7 +29,24 @@ public class AccountServiceImpl implements AccountService {
     
     @Transactional
     public Account saveAccount(Account account) throws DataAccessException {
-        return accountRepository.save(account);
+        SecureRandom sr;
+        try {
+            sr = SecureRandom.getInstance("SHA1PRNG", "SUN");
+            byte[] randomBytes = new byte[64];
+            sr.nextBytes(randomBytes);
+            String saltString = DatatypeConverter.printHexBinary(randomBytes).toLowerCase();
+            account.setSalt(saltString);
+
+            ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
+            sha.setIterations(1000);
+            String passwordHash = sha.encodePassword(account.getPassword(), account.getSalt());
+            account.setPassword(passwordHash);
+            return accountRepository.save(account);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 
     @Transactional(readOnly = true)

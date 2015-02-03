@@ -29,7 +29,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             if (account == null) throw new UsernameNotFoundException("email not found");
             List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("USER"));
-            return new User(email, account.getPassword(), authorities);
+            return new CashewUserDetails(email, account.getPassword(), account.getSalt(), authorities);
         } catch (DataAccessException e) {
             throw new UsernameNotFoundException("database error ");
         }
