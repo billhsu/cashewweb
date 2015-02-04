@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ControllerAdvice
 public class AccountController {
     @RequestMapping("/login")
-    public String index() {
+    public String login() {
         return "login";
+    }
+
+    @RequestMapping("/register")
+    public String register() {
+        return "register";
     }
 }

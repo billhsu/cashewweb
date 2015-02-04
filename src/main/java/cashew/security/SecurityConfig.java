@@ -69,7 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/static/**")
-                .antMatchers("/webjars/**");
+                .antMatchers("/webjars/**")
+                .antMatchers("/register");
     }
 
     @Override
