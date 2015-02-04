@@ -10,7 +10,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.authentication.dao.ReflectionSaltSource;
 import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -42,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setSaltSource(saltSource());
-        authenticationProvider.setPasswordEncoder(new ShaPasswordEncoder(256));
+        authenticationProvider.setPasswordEncoder(shaPasswordEncoder());
         authenticationProvider.afterPropertiesSet();
         return authenticationProvider;
     }
@@ -54,6 +53,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         saltSource.afterPropertiesSet();
         return saltSource;
     }
+    
+    @Bean
+    ShaPasswordEncoder shaPasswordEncoder() throws Exception {
+        ShaPasswordEncoder shaEncoder = new ShaPasswordEncoder(256);
+        shaEncoder.setEncodeHashAsBase64(false);
+        return shaEncoder;
+    }
 
     @Override
     public void configure( WebSecurity web ) throws Exception
@@ -62,8 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // is accessible from the login page without authentication
         web
                 .ignoring()
-                .antMatchers( "/static/**" )
-                .antMatchers( "/webjars/**" );
+                .antMatchers("/static/**")
+                .antMatchers("/webjars/**");
     }
 
     @Override

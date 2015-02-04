@@ -22,6 +22,9 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountRepository accountRepository;
     
+    @Autowired
+    private ShaPasswordEncoder shaEncoder;
+    
     @Transactional(readOnly = true)
     public Account createAccount() {
         return new Account();
@@ -37,9 +40,7 @@ public class AccountServiceImpl implements AccountService {
             String saltString = DatatypeConverter.printHexBinary(randomBytes).toLowerCase();
             account.setSalt(saltString);
 
-            ShaPasswordEncoder sha = new ShaPasswordEncoder(256);
-            sha.setIterations(1000);
-            String passwordHash = sha.encodePassword(account.getPassword(), account.getSalt());
+            String passwordHash = shaEncoder.encodePassword(account.getPassword(), account.getSalt());
             account.setPassword(passwordHash);
             return accountRepository.save(account);
         } catch (Exception e) {
