@@ -23,16 +23,16 @@
 <div th:include="common :: menu"></div>
 <div class="container">
 
-    <form class="form-signup"  th:action="@{/register}" method="post">
+    <form class="form-signup"  th:action="@{/register}" th:object="${newAccount}" method="post">
         <h2 class="form-signin-heading">Sign Up</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
+        <input type="email" id="inputEmail" name="email" th:field="*{email}" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
         <label for="inputNickname" class="sr-only">Nickname</label>
-        <input type="text" id="inputNickname" name="nickname" class="form-control" placeholder="Nickname" required="required" />
+        <input type="text" id="inputNickname" name="nickname" th:field="*{nickname}" class="form-control" placeholder="Nickname" required="required" />
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required" />
+        <input type="password" id="inputPassword" name="password" th:field="*{password}" class="form-control" placeholder="Password" required="required" />
         <label for="reInputPassword" class="sr-only">Retype Password</label>
-        <input type="password" id="reInputPassword" name="repassword" class="form-control" placeholder="Retype Password" required="required" />
+        <input type="password" id="reInputPassword" name="repassword" th:field="*{rePassword}"  class="form-control" placeholder="Retype Password" required="required" />
         <span><a href="login.html" th:href="@{/login}">Sign in</a></span>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
     </form>

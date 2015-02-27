@@ -42,6 +42,15 @@ public class Account implements Serializable {
     @NotNull
     private Date dateJoined;
 
+    public enum AccountStatus {
+        PENDING, ACTIVE, CLOSED
+    }
+
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(name = "account_status")
+    private AccountStatus accountStatus;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Sketch> sketches;
 
@@ -109,6 +118,14 @@ public class Account implements Serializable {
 
     public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;
+    }
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
     @Override
