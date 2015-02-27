@@ -21,22 +21,22 @@ public class Account implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "username", unique = true)
-    @NotEmpty
-    private String username;
-    
-    @Column(name = "password")
-    @NotEmpty
-    private String password;
-
-    @Column(name = "salt")
-    @NotEmpty
-    private String salt;
-
     @Column(name = "email", unique = true)
     @NotEmpty
     @Email
     private String email;
+
+    @Column(name = "password")
+    @NotEmpty
+    private String password;
+
+    @Column(name = "nickname", unique = true)
+    @NotEmpty
+    private String nickname;
+
+    @Column(name = "salt")
+    @NotEmpty
+    private String salt;
     
     @Column(name = "date_joined")
     @NotNull
@@ -71,12 +71,12 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getEmail() {
@@ -115,7 +115,7 @@ public class Account implements Serializable {
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", dateJoined=" + dateJoined +
                 '}';

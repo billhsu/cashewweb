@@ -31,6 +31,9 @@ body {
 .form-signup input[type="email"] {
   margin-bottom: 10px;
 }
+.form-signup input[id="inputNickname"] {
+  margin-bottom: 10px;
+}
 .form-signup input[id="inputPassword"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;

@@ -16,6 +16,9 @@ body {
 .form-signin .checkbox {
   font-weight: normal;
 }
+.form-signin .register {
+  float:right;
+}
 .form-signin .form-control {
   position: relative;
   height: auto;

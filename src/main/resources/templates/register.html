@@ -10,25 +10,37 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.2/css/bootstrap.min.css}" rel="stylesheet"></link>
     <link href="../static/css/register.css" th:href="@{/css/register.css}" rel="stylesheet"></link>
+    <link href="../static/css/navbar-fixed-top.css" th:href="@{/css/navbar-fixed-top.css}" rel="stylesheet"></link>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-
+<div th:include="common :: menu"></div>
 <div class="container">
 
     <form class="form-signup"  th:action="@{/register}" method="post">
         <h2 class="form-signin-heading">Sign Up</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" name="username" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
+        <label for="inputNickname" class="sr-only">Nickname</label>
+        <input type="text" id="inputNickname" name="nickname" class="form-control" placeholder="Nickname" required="required" />
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required" />
         <label for="reInputPassword" class="sr-only">Retype Password</label>
         <input type="password" id="reInputPassword" name="repassword" class="form-control" placeholder="Retype Password" required="required" />
+        <span><a href="login.html" th:href="@{/login}">Sign in</a></span>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
     </form>
 
 </div> <!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" th:src="@{/webjars/jquery/2.1.3/jquery.min.js}"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.2/js/bootstrap.min.js}"></script>
-
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js" th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
 </body>
 </html>
