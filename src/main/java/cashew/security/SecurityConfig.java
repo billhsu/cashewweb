@@ -68,7 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // is accessible from the login page without authentication
         web
                 .ignoring()
-                .antMatchers("/static/**")
+                .antMatchers("/css/**")
+                .antMatchers("/js/**")
                 .antMatchers("/webjars/**")
                 .antMatchers("/register");
     }
