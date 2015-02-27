@@ -13,24 +13,24 @@ import javax.validation.constraints.Size;
 public class NewAccount {
     @NotNull(message = "Email address is compulsory.")
     @NotBlank(message="Email address is compulsory.")
-    @Size(min=3, max=256, message="Email address is not valid")
+    @Size(min=3, max=256, message="Email length should be between 3 and 256 characters.")
     @Email(message = "Email address is not valid.")
     private String email;
 
     @NotNull(message = "Nickname is compulsory.")
     @NotBlank(message="Nickname is compulsory.")
-    @Size(min=3, max=256, message="Nickname is not valid")
-    @Pattern(regexp = "^[a-zA-Z0-9_]*$", message = "Nickname is not valid.")
+    @Size(min=3, max=256, message="Nickname length should be between 3 and 256 characters.")
+    @Pattern(regexp = "^[a-zA-Z0-9_]*$", message = "Only alphanumeric and underscore allowed in nicknames.")
     private String nickname;
 
     @NotNull(message = "Password is compulsory.")
     @NotBlank(message="Password is compulsory.")
-    @Size(min=6, max=256, message="Password length should between 6 and 256 characters.")
+    @Size(min=6, max=256, message="Password length should be between 6 and 256 characters.")
     private String password;
 
     @NotNull(message = "Retype Password is compulsory.")
     @NotBlank(message="Retype Password is compulsory.")
-    @Size(min=6, max=256, message="Password length should between 6 and 256 characters.")
+    @Size(min=6, max=256, message="Password length should be between 6 and 256 characters.")
     private String rePassword;
 
 

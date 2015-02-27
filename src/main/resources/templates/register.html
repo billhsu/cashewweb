@@ -25,14 +25,23 @@
 
     <form class="form-signup"  th:action="@{/register}" th:object="${newAccount}" method="post">
         <h2 class="form-signin-heading">Sign Up</h2>
+
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</div>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" name="email" th:field="*{email}" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
+
+        <div th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Error</div>
         <label for="inputNickname" class="sr-only">Nickname</label>
         <input type="text" id="inputNickname" name="nickname" th:field="*{nickname}" class="form-control" placeholder="Nickname" required="required" />
+
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</div>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="password" th:field="*{password}" class="form-control" placeholder="Password" required="required" />
+
+        <div th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}">Error</div>
         <label for="reInputPassword" class="sr-only">Retype Password</label>
-        <input type="password" id="reInputPassword" name="repassword" th:field="*{rePassword}"  class="form-control" placeholder="Retype Password" required="required" />
+        <input type="password" id="reInputPassword" name="rePassword" th:field="*{rePassword}"  class="form-control" placeholder="Retype Password" required="required" />
+
         <span><a href="login.html" th:href="@{/login}">Sign in</a></span>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
     </form>

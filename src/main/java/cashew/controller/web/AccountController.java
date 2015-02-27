@@ -35,6 +35,9 @@ public class AccountController {
     @RequestMapping(value="/register", method= RequestMethod.POST)
     public String register(@Valid NewAccount newAccount, BindingResult bindingResult) {
         if (bindingResult.hasErrors() || !newAccount.getPassword().equals(newAccount.getRePassword())) {
+            if(!newAccount.getPassword().equals(newAccount.getRePassword())) {
+                bindingResult.rejectValue("rePassword", "error.user", "Passwords not match.");
+            }
             return "register";
         }
         Account account = accountService.createAccount();
