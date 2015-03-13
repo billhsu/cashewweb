@@ -42,8 +42,8 @@
         <label for="reInputPassword" class="sr-only">Retype Password</label>
         <input type="password" id="reInputPassword" name="rePassword" th:field="*{rePassword}"  class="form-control" placeholder="Retype Password" required="required" />
 
-        <span><a href="login.html" th:href="@{/login}">Sign in</a></span>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <span>Already have an account? <a href="login.html" th:href="@{/login}">Login here</a></span>
     </form>
 
 </div> <!-- /container -->
@@ -52,5 +52,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.2/js/bootstrap.min.js}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../static/js/ie10-viewport-bug-workaround.js" th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+<script src="../static/js/common.js" th:src="@{/js/common.js}"></script>
 </body>
 </html>
