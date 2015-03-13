@@ -74,6 +74,12 @@ public class AccountController {
         account.setDateJoined(new Date());
         account.setAccountStatus(Account.AccountStatus.PENDING);
         accountService.saveAccount(account);
+        return "redirect:/login";
+    }
+
+    @RequestMapping(value="/logout", method= RequestMethod.GET)
+    public String logout() {
+        userSession.invalidateSession();
         return "redirect:/";
     }
 }

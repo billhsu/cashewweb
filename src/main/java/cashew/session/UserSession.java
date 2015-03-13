@@ -12,6 +12,10 @@ public class UserSession {
     private String userEmail;
     private String userNickname;
 
+    public void invalidateSession() {
+        setUserEmail(null);
+        setUserNickname(null);
+    }
     public String getUserEmail() {
         return userEmail;
     }
