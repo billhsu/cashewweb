@@ -2,7 +2,10 @@ package cashew.controller.web;
 
 import cashew.entities.Account;
 import cashew.service.AccountService;
+import cashew.service.CryptoService;
+import cashew.session.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,32 +21,56 @@ import java.util.Date;
  */
 @Controller
 @ControllerAdvice
+@Scope("session")
 public class AccountController {
     @Autowired
     AccountService accountService;
 
-    @RequestMapping("/login")
-    public String login() {
+    @Autowired
+    CryptoService cryptoService;
+
+    @Autowired
+    UserSession userSession;
+
+    @RequestMapping(value="/login", method= RequestMethod.GET)
+    public String showLogin(LoginForm loginForm) {
         return "login";
     }
 
-    @RequestMapping(value="/register", method= RequestMethod.GET)
-    public String showRegister(NewAccount newAccount) {
-        return "register";
+    @RequestMapping(value="/login", method= RequestMethod.POST)
+    public String login(@Valid LoginForm loginForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "login";
+        }
+        Account loginAccount = accountService.findAccountByEmail(loginForm.getEmail());
+        if (loginAccount.getPassword().equals(cryptoService.hashString(loginForm.getPassword() + loginAccount.getSalt()))) {
+            userSession.setUserEmail(loginAccount.getEmail());
+            userSession.setUserNickname(loginAccount.getNickname());
+            return "redirect:/";
+        } else {
+            bindingResult.rejectValue("password", "error.user", "Email address or password incorrect.");
+            return "login";
+        }
+
     }
 
-    @RequestMapping(value="/register", method= RequestMethod.POST)
-    public String register(@Valid NewAccount newAccount, BindingResult bindingResult) {
-        if (bindingResult.hasErrors() || !newAccount.getPassword().equals(newAccount.getRePassword())) {
-            if(!newAccount.getPassword().equals(newAccount.getRePassword())) {
+    @RequestMapping(value="/signup", method= RequestMethod.GET)
+    public String showSignup(SignupForm signupForm) {
+        return "signup";
+    }
+
+    @RequestMapping(value="/signup", method= RequestMethod.POST)
+    public String signup(@Valid SignupForm signupForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors() || !signupForm.getPassword().equals(signupForm.getRePassword())) {
+            if(!signupForm.getPassword().equals(signupForm.getRePassword())) {
                 bindingResult.rejectValue("rePassword", "error.user", "Passwords not match.");
             }
-            return "register";
+            return "signup";
         }
         Account account = accountService.createAccount();
-        account.setEmail(newAccount.getEmail());
-        account.setPassword(newAccount.getPassword());
-        account.setNickname(newAccount.getNickname());
+        account.setEmail(signupForm.getEmail());
+        account.setPassword(signupForm.getPassword());
+        account.setNickname(signupForm.getNickname());
         account.setDateJoined(new Date());
         account.setAccountStatus(Account.AccountStatus.PENDING);
         accountService.saveAccount(account);

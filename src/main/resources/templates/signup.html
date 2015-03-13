@@ -9,7 +9,7 @@
     <title>Sign up Cashew</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.2/css/bootstrap.min.css}" rel="stylesheet"></link>
-    <link href="../static/css/register.css" th:href="@{/css/register.css}" rel="stylesheet"></link>
+    <link href="../static/css/signup.css" th:href="@{/css/signup.css}" rel="stylesheet"></link>
     <link href="../static/css/sticky-footer-navbar.css" th:href="@{/css/sticky-footer-navbar.css}" rel="stylesheet"></link>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -23,7 +23,7 @@
 <div th:include="common :: menu"></div>
 <div class="container">
 
-    <form class="form-signup"  th:action="@{/register}" th:object="${newAccount}" method="post">
+    <form class="form-signup"  th:action="@{/signup}" th:object="${signupForm}" method="post">
         <h2 class="form-signin-heading">Sign Up</h2>
 
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</div>

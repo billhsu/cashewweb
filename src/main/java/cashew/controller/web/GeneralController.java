@@ -4,6 +4,7 @@ import cashew.service.AccountService;
 import cashew.service.SketchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,7 +21,7 @@ public class GeneralController {
     private SketchService sketchService;
     
     @RequestMapping("/")
-    public String index() {
+    public String index(ModelMap model) {
         return "welcome";
     }
 }

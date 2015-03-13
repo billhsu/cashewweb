@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<div th:fragment="menu">
+<div th:fragment="menu" th:remove="tag">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Cashew</a>
+                <a class="navbar-brand" href="welcome.html" th:href="@{/}">Cashew</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -48,8 +48,8 @@
                     </li>
                     <li><a href="#about">About</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" th:with="currentUser=${session.userEmail}">
-                    <p th:if="${currentUser != null}">
+                <ul class="nav navbar-nav navbar-right">
+                    <p th:if="${@userSession.userEmail != null}" th:remove="tag">
                         <li><button class="btn btn-primary navbar-btn" href="#">Upload</button></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profile<span class="caret"></span></a>
@@ -61,6 +61,10 @@
                             </ul>
                         </li>
                     </p>
+                    <p th:if="${@userSession.userEmail == null}" th:remove="tag">
+                        <li><a href="login.html" th:href="@{/login}">Login</a></li>
+                        <li><button class="btn btn-primary navbar-btn" th:href="@{/signup}">Sign Up</button></li>
+                    </p>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -70,7 +74,7 @@
 Hello World!
 </div> <!-- /container -->
 
-<div th:fragment="footer">
+<div th:fragment="footer" th:remove="tag">
     <footer class="footer">
         <div class="container">
             <p class="text-muted">Created by <a href="https://github.com/billhsu">Shipeng Xu</a> with Java, Spring, Bootstrap and ❤</p>

@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 /**
  * Created by Shipeng Xu on 2/27/15.
  */
-public class NewAccount {
+public class SignupForm {
     @NotNull(message = "Email address is compulsory.")
     @NotBlank(message="Email address is compulsory.")
     @Size(min=3, max=256, message="Email addresses are between 3 and 256 characters long.")

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("session")
 public class UserSession {
-    String userEmail;
+    private String userEmail;
+    private String userNickname;
 
     public String getUserEmail() {
         return userEmail;
@@ -17,5 +18,13 @@ public class UserSession {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
     }
 }
