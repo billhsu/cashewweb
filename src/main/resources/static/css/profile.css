@@ -1,5 +1,5 @@
-.fixed { height:550px; overflow:hidden; }
-.scrollit { height:550px; overflow-y:scroll; }
+.fixed { height:560px; overflow:hidden; }
+.scrollit { height:560px; overflow-y:scroll; }
 .event .overlay:hover {
     opacity: 1;
     cursor: pointer;
