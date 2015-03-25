@@ -30,6 +30,12 @@ public class cashewApplication {
         System.setProperty(AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME, profile);
         System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, profile);
 
+        String webPort = System.getenv("PORT");
+        if (webPort == null || webPort.isEmpty()) {
+            webPort = "8080";
+        }
+        System.setProperty("server.port", webPort);
+        System.out.println("Server port: " + webPort);
         SpringApplication.run(cashewApplication.class, args);
     }
 }
