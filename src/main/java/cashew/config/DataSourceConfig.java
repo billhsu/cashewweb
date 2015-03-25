@@ -16,7 +16,6 @@ import java.net.URISyntaxException;
  */
 @Configuration
 @PropertySource("classpath:datasource_local.properties")
-@Profile("local")
 public class DataSourceConfig {
     @Value("${url}")
     private String localUrl;
@@ -28,12 +27,43 @@ public class DataSourceConfig {
     private String driverClassName;
 
     @Bean
+    @Profile("local")
     public DataSource localDataSource() throws URISyntaxException {
         System.out.println("localDataSource()");
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(localUrl);
         basicDataSource.setUsername(localUsername);
         basicDataSource.setPassword(localPassword);
+        return basicDataSource;
+    }
+
+    @Bean
+    @Profile("dev")
+    public DataSource devDataSource() throws URISyntaxException {
+        System.out.println("devDataSource()");
+        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
+        return basicDataSource;
+    }
+
+    @Bean
+    @Profile("live")
+    public DataSource liveDataSource() throws URISyntaxException {
+        System.out.println("liveDataSource()");
+        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
         return basicDataSource;
     }
 }
