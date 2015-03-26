@@ -43,7 +43,10 @@ public class AccountController {
             return "login";
         }
         Account loginAccount = accountService.findAccountByEmail(loginForm.getEmail());
-        if (loginAccount.getPassword().equals(cryptoService.hashString(loginForm.getPassword() + loginAccount.getSalt()))) {
+        if (loginAccount!=null &&
+                loginAccount.getPassword().equals(
+                        cryptoService.hashString(loginForm.getPassword() + loginAccount.getSalt())
+                )) {
             userSession.setUserEmail(loginAccount.getEmail());
             userSession.setUserNickname(loginAccount.getNickname());
             return "redirect:/";
