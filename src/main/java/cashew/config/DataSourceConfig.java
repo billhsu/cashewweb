@@ -42,7 +42,6 @@ public class DataSourceConfig {
     public DataSource devDataSource() throws URISyntaxException {
         System.out.println("devDataSource()");
         URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
-        System.out.println(dbUri);
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
