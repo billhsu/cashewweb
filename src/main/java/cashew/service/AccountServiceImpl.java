@@ -56,4 +56,9 @@ public class AccountServiceImpl implements AccountService {
     public Account findAccountByEmail(String email) {
         return accountRepository.findByEmail(email);
     }
+
+    @Transactional(readOnly = true)
+    public Account findAccountByNickname(String nickname) {
+        return accountRepository.findByNickname(nickname);
+    }
 }

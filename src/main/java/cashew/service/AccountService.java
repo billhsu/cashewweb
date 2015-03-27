@@ -13,4 +13,5 @@ public interface AccountService {
     public Account saveAccount(Account account) throws DataAccessException;
     public Collection<Account> findAccounts() throws DataAccessException;
     public Account findAccountByEmail(String email);
+    public Account findAccountByNickname(String nickname);
 }

@@ -13,4 +13,5 @@ public interface AccountRepository extends Repository<Account, Long> {
     Account save(Account account) throws DataAccessException;
     Collection<Account> findAll() throws DataAccessException;
     Account findByEmail(String email) throws DataAccessException;
+    Account findByNickname(String nickname) throws DataAccessException;
 }

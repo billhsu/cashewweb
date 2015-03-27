@@ -70,6 +70,13 @@ public class AccountController {
             }
             return "signup";
         }
+        Account accountByEmail = accountService.findAccountByEmail(signupForm.getEmail());
+        Account accountByNickname = accountService.findAccountByNickname(signupForm.getNickname());
+        if(accountByEmail != null || accountByNickname != null) {
+            if(accountByEmail != null) bindingResult.rejectValue("email", "error.user", "Email already registered.");
+            if(accountByNickname != null) bindingResult.rejectValue("nickname", "error.user", "Nickname already registered.");
+            return "signup";
+        }
         Account account = accountService.createAccount();
         account.setEmail(signupForm.getEmail());
         account.setPassword(signupForm.getPassword());
