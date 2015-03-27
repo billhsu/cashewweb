@@ -34,6 +34,10 @@ public class DataSourceConfig {
         basicDataSource.setUrl(localUrl);
         basicDataSource.setUsername(localUsername);
         basicDataSource.setPassword(localPassword);
+        basicDataSource.setValidationQuery("SELECT 1");
+        basicDataSource.setTestWhileIdle(true);
+        basicDataSource.setTestOnBorrow(true);
+        basicDataSource.setInitialSize(4);
         return basicDataSource;
     }
 
@@ -49,6 +53,10 @@ public class DataSourceConfig {
         basicDataSource.setUrl(dbUrl);
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
+        basicDataSource.setValidationQuery("SELECT 1");
+        basicDataSource.setTestWhileIdle(true);
+        basicDataSource.setTestOnBorrow(true);
+        basicDataSource.setInitialSize(4);
         return basicDataSource;
     }
 
@@ -64,6 +72,10 @@ public class DataSourceConfig {
         basicDataSource.setUrl(dbUrl);
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
+        basicDataSource.setValidationQuery("SELECT 1");
+        basicDataSource.setTestWhileIdle(true);
+        basicDataSource.setTestOnBorrow(true);
+        basicDataSource.setInitialSize(4);
         return basicDataSource;
     }
 }
