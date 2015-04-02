@@ -51,7 +51,7 @@ $(document).ready(function() {
     var grid = new THREE.GridHelper(10, 1);
     scene.add(grid);
 
-    controls = new THREE.OrbitControls( camera );
+    controls = new THREE.OrbitControls(camera, container);
     controls.damping = 0.2;
 
     requestAnimationFrame(render);
