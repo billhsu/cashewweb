@@ -1,4 +1,4 @@
-package cashew.controller.web;
+package cashew.controller.form;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;

@@ -1,5 +1,7 @@
 package cashew.controller.web;
 
+import cashew.controller.form.LoginForm;
+import cashew.controller.form.SignupForm;
 import cashew.entities.Account;
 import cashew.service.AccountService;
 import cashew.service.CryptoService;
